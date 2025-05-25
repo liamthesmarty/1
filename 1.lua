@@ -77,7 +77,7 @@ local w=j:GetPos()
 local u,v=j:OBBMins(),j:OBBMaxs()
 local y=(w+Vector(u.x,0,v.z)):ToScreen()
 w=w:ToScreen()
-local h,n=w.y-y.y,(w.y-y.y)/2
+local h,n=w.y-y.y,(w.y-y.y)/1.8
 if b.c.nick then draw.SimpleTextOutlined(j:Name(),"DefaultSmall",w.x,y.y-2,color_white,TEXT_ALIGN_CENTER,TEXT_ALIGN_BOTTOM,1,color_black)end
 if b.c.wep then
 local z=j:GetActiveWeapon()
@@ -85,9 +85,14 @@ if IsValid(z)then draw.SimpleTextOutlined(z:GetPrintName(),"DefaultSmall",w.x,w.
 end
 if b.c.role then draw.SimpleTextOutlined(team.GetName(j:Team()),"DefaultSmall",w.x,w.y+(b.c.wep and 16 or 5),color_white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,color_black)end
 if b.c.hp then
-local r=j:Health()
-local i=HSVToColor(math.Clamp(r,0,100)/100*120,1,1)
-draw.SimpleTextOutlined(r,"DefaultSmall",w.x,y.y-10,i,TEXT_ALIGN_CENTER,TEXT_ALIGN_BOTTOM,1,color_black)end
+local g=math.Clamp(j:Health(),0,100)
+local p=h/100*g
+local x=w.x-n/2-4
+surface.SetDrawColor(20,20,20)
+surface.DrawRect(x,y.y-1,n/n+2,h+2)
+surface.SetDrawColor(0,255,0)
+surface.DrawRect(x+1,w.y-(j:Health()>100 and h or p),n/n,(j:Health()>100 and h or p))
+end
 if b.c.box then
 surface.SetDrawColor(team.GetColor(j:Team()))
 surface.DrawOutlinedRect(w.x-n/2,y.y,n,h)
