@@ -59,10 +59,8 @@ end
 w=input.IsKeyDown(4)
 if input.IsKeyDown(73)and not x then
 if IsValid(b.m)then b.m:Remove()end
-hook.Remove("DrawOverlay","b")
+hook.Remove("HUDPaint","b")
 hook.Remove("Think","a")
-hook.Remove("ShutDown","n")
-hook.Remove("RenderScene","b")
 end
 x=input.IsKeyDown(73)
 end
@@ -102,4 +100,4 @@ surface.DrawOutlinedRect(w.x-n/2+1,y.y+1,n-2,h-2)
 end
 end
 end
-hook.Add("DrawOverlay","b",y)
+hook.Add("HUDPaint","b",y)
