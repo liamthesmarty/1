@@ -53,26 +53,21 @@ end
 end
 end
 local function v()
-if input.IsKeyDown(10)and not w then
+if input.IsKeyDown(4)and not w then
 if IsValid(b.m)then b.m:SetVisible(not b.m:IsVisible())end
 end
-w=input.IsKeyDown(10)
+w=input.IsKeyDown(4)
 if input.IsKeyDown(73)and not x then
 if IsValid(b.m)then b.m:Remove()end
 hook.Remove("DrawOverlay","b")
 hook.Remove("Think","a")
+hook.Remove("ShutDown","n")
+hook.Remove("RenderScene","b")
 end
 x=input.IsKeyDown(73)
 end
 hook.Add("Think","a",v)
 local function y()
-local e=math.floor(1/RealFrameTime())
-local c="lavahook | "..e.." fps"
-surface.SetFont("DefaultSmall")
-local o,q=surface.GetTextSize(c)
-local p=5
-draw.RoundedBox(4,p,p,o+p*2,q+p*2,Color(30,30,30))
-draw.SimpleText(c,"DefaultSmall",p*2,p*2,color_white,TEXT_ALIGN_LEFT,TEXT_ALIGN_TOP)
 local z=player.GetAll()
 for i=1,#z do
 local j=z[i]
